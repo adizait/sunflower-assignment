@@ -16,11 +16,15 @@
   "main": "index.js",
   "scripts": {},
   "dependencies": {
+    "dotenv": "^17.4.2",
+    "faker": "^5.5.3",
     "playwright": "^1.61.0",
     "typescript": "^6.0.3"
   },
   "devDependencies": {
+    "@faker-js/faker": "^10.5.0",
     "@playwright/test": "^1.61.0",
+    "@types/faker": "^6.6.8",
     "@types/node": "^26.0.0"
   }
 }
