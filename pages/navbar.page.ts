@@ -1,5 +1,11 @@
-import { Page } from "playwright";
+import { Locator, Page } from "playwright";
 
 export class NavBar {
-    constructor(public page: Page) {};
+    public component: Locator;
+    public register: Locator;
+
+    constructor(public page: Page) {
+        this.component = page.locator('.header-links');
+        this.register = this.component.getByText('Register');
+    };
 };
