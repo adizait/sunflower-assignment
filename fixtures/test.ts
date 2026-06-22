@@ -1,4 +1,4 @@
-import { test as base, expect } from '@playwright/test';
+import { test as base, expect, Page } from '@playwright/test';
 import { IPages } from './pages';
 import { NavBar } from '../pages/navbar.page';
 import { Products } from '../pages/products.page';
@@ -7,10 +7,16 @@ import { RegisterPage } from '../pages/register.page';
 
 
 interface IFixtures {
+    page: Page;
     Pages: IPages;
 };
 
 export const test = base.extend<IFixtures>({
+    page: async ({ page }, use) => {
+        //before hook
+        await page.goto('/');
+        await use(page);
+    },
     Pages: async ({ page }, use) => {
         const pagesObj: IPages = {
             RegisterPage: new RegisterPage(page),
@@ -20,6 +26,9 @@ export const test = base.extend<IFixtures>({
         };
 
         await use(pagesObj);
+        
+        //after hook
+        await pagesObj.NavBar.logoutUser();
     }
 });
 

@@ -1,6 +1,5 @@
 import { Locator, Page } from "playwright";
 import { User } from "../models/user";
-import { th } from "@faker-js/faker/.";
 import { test } from "../fixtures/test";
 
 export class RegisterPage {
@@ -26,11 +25,11 @@ export class RegisterPage {
         this.continueButton = this.registerResult.locator('[value="Continue"]');
     };
 
-    public async chooseGender(gender: string) {
+    public async chooseGender(gender: string): Promise<void> {
         await this.registerForm.locator(`#gender-${gender.toLowerCase()}`).click();
     };
 
-    public async fillUserDetails(user: User) {
+    public async fillUserDetails(user: User): Promise<void> {
         if (user.gender) await this.chooseGender(user.gender);
 
         await this.firstNameInput.fill(user.firstName);
@@ -38,12 +37,12 @@ export class RegisterPage {
         await this.emailInput.fill(user.email);
     };
 
-    public async fillPassword(user: User) {
+    public async fillPassword(user: User): Promise<void> {
         await this.passwordInput.fill(user.password);
         await this.confirmPasswordInput.fill(user.password);
     };
 
-    public async registerUser(user: User) {
+    public async registerUser(user: User): Promise<void> {
         await test.step(`registering user - ${user.email}`, async () => {
             await this.fillUserDetails(user);
             await this.fillPassword(user);
