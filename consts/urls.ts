@@ -1,1 +1,1 @@
-export const digitalDownloadsUrl = 'digital-downloads';
+export const addProductToCardUrl = 'addproducttocart';
