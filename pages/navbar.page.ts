@@ -9,7 +9,7 @@ export class NavBar {
 
     constructor(public page: Page) {
         this.component = page.locator('.header-links');
-        this.register = this.component.locator('.register');
+        this.register = this.component.locator('.ico-register');
         this.account = this.component.locator('.account');
         this.logout = this.component.locator('.ico-logout');
     };
