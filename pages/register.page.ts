@@ -4,26 +4,30 @@ import { th } from "@faker-js/faker/.";
 import { test } from "../fixtures/test";
 
 export class RegisterPage {
-    public component: Locator;
+    public registerForm: Locator;
+    public registerResult: Locator;
     public firstNameInput: Locator;
     public lastNameInput: Locator;
     public emailInput: Locator;
     public passwordInput: Locator;
     public confirmPasswordInput: Locator;
     public registerButton: Locator;
+    public continueButton: Locator;
 
     constructor(public page: Page) {
-        this.component = page.locator('[class="page registration-page"]');
-        this.firstNameInput = this.component.locator('#FirstName');
-        this.lastNameInput = this.component.locator('#LastName');
-        this.emailInput = this.component.locator('#Email');
-        this.passwordInput = this.component.locator('#Password');
-        this.confirmPasswordInput = this.component.locator('#ConfirmPassword');
-        this.registerButton = this.component.locator('#register-button');
+        this.registerForm = page.locator('[class="page registration-page"]');
+        this.registerResult = page.locator('[class="page registration-result-page"]');
+        this.firstNameInput = this.registerForm.locator('#FirstName');
+        this.lastNameInput = this.registerForm.locator('#LastName');
+        this.emailInput = this.registerForm.locator('#Email');
+        this.passwordInput = this.registerForm.locator('#Password');
+        this.confirmPasswordInput = this.registerForm.locator('#ConfirmPassword');
+        this.registerButton = this.registerForm.locator('#register-button');
+        this.continueButton = this.registerResult.locator('[value="Continue"]');
     };
 
     public async chooseGender(gender: string) {
-        await this.component.locator(`#gender-${gender.toLowerCase()}`).click();
+        await this.registerForm.locator(`#gender-${gender.toLowerCase()}`).click();
     };
 
     public async fillUserDetails(user: User) {
@@ -44,6 +48,7 @@ export class RegisterPage {
             await this.fillUserDetails(user);
             await this.fillPassword(user);
             await this.registerButton.click();
+            await this.continueButton.click();
         });
     };
 };
