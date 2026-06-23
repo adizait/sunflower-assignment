@@ -1,0 +1,10 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+      "target": "ESNext",
+      "module": "commonjs",
+      "moduleResolution": "node10",
+      "sourceMap": true,
+      "outDir": "../tests-out",
+  }
+}
