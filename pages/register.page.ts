@@ -37,15 +37,15 @@ export class RegisterPage {
         await this.emailInput.fill(user.email);
     };
 
-    public async fillPassword(user: User): Promise<void> {
-        await this.passwordInput.fill(user.password);
-        await this.confirmPasswordInput.fill(user.password);
+    public async fillPassword(password: string): Promise<void> {
+        await this.passwordInput.fill(password);
+        await this.confirmPasswordInput.fill(password);
     };
 
     public async registerUser(user: User): Promise<void> {
         await test.step(`registering user - ${user.email}`, async () => {
             await this.fillUserDetails(user);
-            await this.fillPassword(user);
+            await this.fillPassword(user.password);
             await this.registerButton.click();
             await this.continueButton.click();
         });
